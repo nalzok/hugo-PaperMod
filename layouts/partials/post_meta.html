@@ -12,6 +12,18 @@
 {{- $scratch.Add "meta" (slice .) }}
 {{- end }}
 
+{{- if .Params.departments -}}
+{{- $scratch.Add "meta" (delimit (apply .Params.departments "partial" "post-department-link" ".") "&amp;") }}
+{{- end }}
+
+{{- if .Params.courses -}}
+{{- $scratch.Add "meta" (delimit (apply .Params.courses "partial" "post-course-link" ".") "&amp;") }}
+{{- end }}
+
+{{- if .Params.instructors -}}
+{{- $scratch.Add "meta" (delimit (apply .Params.instructors "partial" "post-instructor-link" ".") "&amp;") }}
+{{- end }}
+
 {{- with ($scratch.Get "meta") }}
 {{- delimit . "&nbsp;·&nbsp;" -}}
 {{- end -}}
